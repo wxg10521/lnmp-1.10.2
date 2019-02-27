@@ -1,0 +1,20 @@
+FROM alpine:edge
+
+
+# insall nginx php.
+RUN  apk add --update curl nginx lighttpd php php-cgi php-mysql php-mysqli php-json php-pdo php-phar php-bcmath php-bz2 php-calendar php-ctype php-curl php-dom php-exif php-ftp php-gd php-gettext php-iconv php-imap php-intl php-json php-ldap php-mcrypt php-openssl php-pdo_mysql php-pdo_pgsql php-pdo_sqlite php-pgsql php-posix php-soap php-sockets php-sqlite3 php-wddx php-xml php-xmlreader php-xsl php-zip php-zlib spawn-fcgi \
+     && rm -rf /var/cache/apk/*
+RUN  mkdir /logs \
+     && mkdir -p /var/www/html \
+     && mkdir -p /usr/src \
+     && mkdir -p /data
+COPY  nginx/nginx.conf  /etc/nginx/nginx.conf
+COPY  nginx/default.conf  /etc/nginx/conf.d/default.conf
+
+COPY  start.sh  /start.sh
+
+ENV DISCUZ_TEMPLATE=default
+
+WORKDIR /var/www/html
+EXPOSE 	8888
+CMD  ["sh","/start.sh"]
