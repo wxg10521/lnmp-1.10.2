@@ -1,10 +1,10 @@
-FROM alpine:3.3
+FROM alpine:3.7
 
 
 # insall nginx php.
 ADD nginx-1.10.2.tar.gz /
-RUN  echo "http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories && \
-     echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories 
+RUN  echo "http://dl-4.alpinelinux.org/alpine/v3.7/community/" >> /etc/apk/repositories && \
+     echo "http://dl-4.alpinelinux.org/alpine/v3.7/testing/" >> /etc/apk/repositories 
 RUN  apk add --update curl gcc make lighttpd php php-cgi php-mysql php-mysqli php-json php-pdo php-phar php-bcmath php-bz2 php-calendar php-ctype php-curl php-dom php-exif php-ftp php-gd php-gettext php-iconv php-imap php-intl php-json php-ldap php-mcrypt php-openssl php-pdo_mysql php-pdo_pgsql php-pdo_sqlite php-pgsql php-posix php-soap php-sockets php-sqlite3 php-wddx php-xml php-xmlreader php-xsl php-zip php-zlib spawn-fcgi \
      && rm -rf /var/cache/apk/*
 RUN  cd /nginx-1.10.2 \
