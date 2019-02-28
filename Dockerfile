@@ -1,12 +1,10 @@
-FROM alpine:3.7
+FROM alpine:edge
 
 
 # insall nginx php.
 ADD nginx-1.10.2.tar.gz /
-RUN  echo "http://mirrors.ustc.edu.cn/alpine/v3.7/community/" >> /etc/apk/repositories && \
-     echo "http://mirrors.ustc.edu.cn/alpine/v3.7/main/" >> /etc/apk/repositories 
-#RUN  echo "http://dl-4.alpinelinux.org/alpine/v3.7/community/" >> /etc/apk/repositories && \
-#     echo "http://dl-4.alpinelinux.org/alpine/v3.7/main/" >> /etc/apk/repositories 
+RUN  echo "http://mirrors.ustc.edu.cn/alpine/edge/community/" >> /etc/apk/repositories && \
+     echo "http://mirrors.ustc.edu.cn/alpine/edge/main/" >> /etc/apk/repositories 
 RUN  apk add --update curl gcc g++ make lighttpd php5 php5-cgi php5-mysql php5-mysqli php5-json php5-pdo php5-phar php5-bcmath php5-bz2 php5-calendar php5-ctype php5-curl php5-dom php5-exif php5-ftp php5-gd php5-gettext php5-iconv php5-imap php5-intl php5-json php5-ldap php5-mcrypt php5-openssl php5-pdo_mysql php5-pdo_pgsql php5-pdo_sqlite php5-pgsql php5-posix php5-soap php5-sockets php5-sqlite3 php5-wddx php5-xml php5-xmlreader php5-xsl php5-zip php5-zlib spawn-fcgi \
      && rm -rf /var/cache/apk/*
 RUN  cd /nginx-1.10.2 \
